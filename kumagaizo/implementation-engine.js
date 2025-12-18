@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// KUMAGAIZO IMPLEMENTATION PATH ENGINE v1.2
-// FIXED: Formatting + intuitive click areas
+// KUMAGAIZO IMPLEMENTATION PATH ENGINE
 // Load order: AFTER enhancement modules, AFTER prompt engine
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -353,7 +352,7 @@ Identify any concerns and suggest specific improvements.`;
     stepEl.className = 'path-step';
     stepEl.setAttribute('data-step-type', step.type);
 
-    // 🔧 FIX #1: Format prompt text with line breaks and bold conversion
+    // Format prompt text with line breaks and bold conversion
     const formattedPrompt = formatPromptText(step.prompt);
 
     stepEl.innerHTML = `
@@ -374,7 +373,7 @@ Identify any concerns and suggest specific improvements.`;
     return stepEl;
   }
 
-  // 🔧 FIX #1: New function to format prompt text
+  // Format prompt text
   function formatPromptText(text) {
     if (!text) return '';
     
@@ -441,7 +440,7 @@ Identify any concerns and suggest specific improvements.`;
       content.appendChild(group);
     });
 
-    // 🔧 FIX #2: Make entire header clickable
+    // Make entire header clickable
     header.style.cursor = 'pointer';
     header.addEventListener('click', () => {
       const isExpanded = content.style.display !== 'none';
@@ -673,7 +672,7 @@ Identify any concerns and suggest specific improvements.`;
     state.selectedEnhancements = [];
 
     // ═══════════════════════════════════════════════════════════════════════
-    // NEW: Generate and render Thinking Analysis FIRST
+    // Generate and render Thinking Analysis FIRST
     // ═══════════════════════════════════════════════════════════════════════
     if (window.KumagaizoThinkingAnalysis) {
       const analysis = window.KumagaizoThinkingAnalysis.analyze(sessionState, category);

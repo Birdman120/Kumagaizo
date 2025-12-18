@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// KUMAGAIZO ENHANCEMENT MODULES v1.0
+// KUMAGAIZO ENHANCEMENT MODULES
 // Enhancement library for Implementation Path system
 // Load order: BEFORE implementation-path-engine.js
 // ═══════════════════════════════════════════════════════════════════════════
@@ -512,6 +512,6 @@ window.KumagaizoEnhancements = {
   ]
 };
 
-console.log('✦ Kumagaizo Enhancement Modules Loaded');
+console.log('Kumagaizo Enhancement Modules Loaded');
 console.log(`  → ${Object.keys(window.KumagaizoEnhancements).length} categories`);
 console.log(`  → ${Object.values(window.KumagaizoEnhancements).flat().length} total enhancements`);

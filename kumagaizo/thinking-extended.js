@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// KUMAGAIZO THINKING ANALYSIS - EXTENDED ANTI-PATTERNS v1.0
+// KUMAGAIZO THINKING ANALYSIS - EXTENDED ANTI-PATTERNS
 // Additional category-specific anti-patterns for all PreAI categories
 // Load order: AFTER kumagaizo-thinking-analysis.js
 // ═══════════════════════════════════════════════════════════════════════════
@@ -504,7 +504,7 @@
       window.KumagaizoExtendedPatterns = EXTENDED_PATTERNS;
     }
 
-    console.log('✦ Thinking Analysis Extended Patterns Loaded');
+    console.log('Thinking Analysis Extended Patterns Loaded');
     console.log(`  → ${Object.keys(EXTENDED_PATTERNS).length} additional categories`);
     console.log(`  → ${Object.values(EXTENDED_PATTERNS).flat().length} anti-patterns added`);
   }

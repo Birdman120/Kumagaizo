@@ -1,20 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// PROVENANCEAI COGNITIVE REFLECTION v1.0
-// 
-// Simple, precise reflection system
-// Shows hand-crafted reflections from the categories JSON
-// No pattern matching, no randomness—just the right thought at the right time
-//
-// Place this AFTER both category files (part1 and part2)
-//
-// HTML required:
-// <div id="cognitive-reflection" class="cognitive-reflection">
-//   <span id="reflection-icon" class="reflection-icon">¦</span>
-//   <span id="reflection-text" class="reflection-text"></span>
-//   <span class="reflection-icon">¦</span>
-// </div>
-//
-// Style everything in Webflow. This JS only controls opacity.
+// KUMAGAIZO COGNITIVE REFLECTION//
 // ═══════════════════════════════════════════════════════════════════════════
 
 (function() {

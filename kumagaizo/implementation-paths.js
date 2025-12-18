@@ -4763,4 +4763,4 @@ window.KumagaizoPathGenerators = {
   }    
 };
   
-console.log(`✦ Implementation Paths Loaded: All domains (${Object.keys(window.KumagaizoPathGenerators).length} categories)`);
+console.log(`Implementation Paths Loaded: All domains (${Object.keys(window.KumagaizoPathGenerators).length} categories)`);

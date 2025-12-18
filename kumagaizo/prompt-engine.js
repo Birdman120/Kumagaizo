@@ -1,17 +1,6 @@
-// KUMAGAIZO ADVANCED PROMPT ENGINE v2.3 — DIG DEEPER SUPPORT
+// KUMAGAIZO ADVANCED PROMPT ENGINE
 // Load order: LAST (after all config files)
 // 
-// v2.3 Changes:
-// - Seamlessly blends deeper questions into prompt (no separate sections)
-// - Deeper responses analyzed same as base responses
-// - Session character analysis includes all responses
-//
-// v2.2 Features retained:
-// - First-person voice (I/My)
-// - Cognitive load detection
-// - Contradiction and tension spotting
-// - Response momentum analysis
-// - Adaptive meta-framing
 
 (function() {
   'use strict';
@@ -525,7 +514,7 @@
     }
     
     const configKeys = Object.keys(window.KumagaizoPromptConfig || {});
-    console.log('✦ Kumagaizo Advanced Prompt Engine v2.3 — Dig Deeper Support');
+    console.log('Kumagaizo Advanced Prompt Engine');
     console.log(`  → ${configKeys.length} category configs loaded`);
     console.log('  → Seamless deeper question integration enabled');
     console.log('  → Session character analysis includes all responses');

@@ -1,13 +1,6 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// PROVENANCEAI CORE v6.2 — Dig Deeper Mode
+// KUMAGAIZO CORE
 // 
-// Core session logic with optional deeper questions.
-// Prompt generation handled by separate Prompt Engine.
-//
-// v6.2 Changes:
-// - Added dig deeper mode support
-// - Deeper questions blend seamlessly into base questions
-// - No separate sections in generated prompt
 // ═══════════════════════════════════════════════════════════════════════════
 
 (function() {
@@ -605,7 +598,7 @@
     }
     
     const categoryCount = Object.keys(getCategories()).length;
-    console.log(`✦ ProvenanceAI Core v6.2 — ${categoryCount} categories (Dig Deeper enabled)`);
+    console.log(`Kumagaizo Core — ${categoryCount} categories (Dig Deeper enabled)`);
   }
 
   // Export for Prompt Engine and debugging

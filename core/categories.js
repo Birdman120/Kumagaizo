@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════
-// KUMAGAIZO CATEGORIES - COMPLETE
+// KUMAGAIZO CATEGORIES
 // All 27 categories across all domains
 // ═══════════════════════════════════════════════════════════════
 
@@ -2495,4 +2495,4 @@ window.BLANKPAGE_CATEGORIES = {
 
 };
 
-console.log(`✦ All Kumagaizo Categories Loaded (${Object.keys(window.BLANKPAGE_CATEGORIES).length} categories)`);
+console.log(`All Kumagaizo Categories Loaded (${Object.keys(window.BLANKPAGE_CATEGORIES).length} categories)`);

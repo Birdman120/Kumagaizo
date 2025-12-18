@@ -1036,4 +1036,4 @@ window.KumagaizoPromptConfig = {
   
 };
 
-console.log(`✦ Kumagaizo Config Loaded: All domains (${Object.keys(window.KumagaizoPromptConfig).length} categories)`);
+console.log(`Kumagaizo Config Loaded: All domains (${Object.keys(window.KumagaizoPromptConfig).length} categories)`);
