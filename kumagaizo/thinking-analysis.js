@@ -962,7 +962,7 @@ window.KumagaizoThinkingAnalysis = (function() {
       missingEl.className = 'analysis-section missing-considerations-section';
       missingEl.innerHTML = `
         <div class="section-header">
-          <span class="section-icon">📋</span>
+          <span class="section-icon">○</span>
           <span>Domain Checklist</span>
         </div>
         <div class="section-content">
