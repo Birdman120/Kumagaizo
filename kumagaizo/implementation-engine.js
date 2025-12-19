@@ -319,31 +319,27 @@ Identify any concerns and suggest specific improvements.`;
       console.warn('Implementation Path: Container not found');
       return;
     }
-
-    container.innerHTML = '';
-
-    const header = document.createElement('div');
-    header.className = 'path-header';
-    header.innerHTML = `
-      <h3>Implementation Path</h3>
-      <p>This structured approach builds on your thinking:</p>
-    `;
-    container.appendChild(header);
-
+  
+    // Clear only generated content, preserve Webflow header
+    const existingSteps = container.querySelectorAll('.path-step, .enhancement-panel, .btn-copy-path');
+    existingSteps.forEach(el => el.remove());
+  
+    // No auto-generated header - using Webflow header
+  
     path.steps.forEach((step, index) => {
       const stepEl = createStepElement(step, index, category);
       container.appendChild(stepEl);
     });
-
+  
     const enhancementPanel = createEnhancementPanel(category);
     container.appendChild(enhancementPanel);
-
+  
     const copyButton = document.createElement('button');
     copyButton.className = 'btn-copy-path';
     copyButton.textContent = 'Copy Implementation Path';
     copyButton.addEventListener('click', () => copyImplementationPath(path));
     container.appendChild(copyButton);
-
+  
     container.style.display = 'flex';
   }
 
