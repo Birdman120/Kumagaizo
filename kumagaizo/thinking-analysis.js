@@ -501,6 +501,151 @@ window.KumagaizoThinkingAnalysis = (function() {
     return phrases;
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // MISSING STANDARD CONSIDERATIONS DETECTION
+  // ─────────────────────────────────────────────────────────────────────────
+
+  const STANDARD_CONSIDERATIONS = {
+    coding: {
+      terms: ['error', 'test', 'edge case', 'performance', 'security', 'validation'],
+      labels: ['Error handling', 'Testing strategy', 'Edge cases', 'Performance', 'Security', 'Input validation']
+    },
+    debugging: {
+      terms: ['reproduce', 'log', 'breakpoint', 'hypothesis', 'root cause'],
+      labels: ['Reproduction steps', 'Logging', 'Debugging tools', 'Hypothesis', 'Root cause analysis']
+    },
+    architecture: {
+      terms: ['scalability', 'security', 'migration', 'backward compatible', 'monitoring', 'deployment'],
+      labels: ['Scalability', 'Security', 'Data migration', 'Backwards compatibility', 'Monitoring', 'Deployment strategy']
+    },
+    codereview: {
+      terms: ['security', 'performance', 'maintainability', 'test coverage', 'documentation'],
+      labels: ['Security review', 'Performance impact', 'Maintainability', 'Test coverage', 'Documentation']
+    },
+    api: {
+      terms: ['versioning', 'rate limit', 'authentication', 'error response', 'documentation', 'backward compatible'],
+      labels: ['Versioning strategy', 'Rate limiting', 'Authentication', 'Error responses', 'API documentation', 'Backwards compatibility']
+    },
+    product: {
+      terms: ['user research', 'metric', 'success criteria', 'stakeholder', 'rollout', 'risk'],
+      labels: ['User research', 'Success metrics', 'Success criteria', 'Stakeholder alignment', 'Rollout plan', 'Risk assessment']
+    },
+    feature: {
+      terms: ['user story', 'acceptance criteria', 'edge case', 'metric', 'rollout', 'dependency'],
+      labels: ['User stories', 'Acceptance criteria', 'Edge cases', 'Success metrics', 'Rollout strategy', 'Dependencies']
+    },
+    userstory: {
+      terms: ['acceptance criteria', 'edge case', 'error state', 'success metric'],
+      labels: ['Acceptance criteria', 'Edge cases', 'Error states', 'Success metrics']
+    },
+    techdecision: {
+      terms: ['tradeoff', 'risk', 'alternative', 'migration', 'rollback', 'cost'],
+      labels: ['Tradeoffs', 'Risks', 'Alternatives considered', 'Migration path', 'Rollback plan', 'Cost analysis']
+    },
+    uxdesign: {
+      terms: ['user research', 'accessibility', 'mobile', 'error state', 'loading state', 'edge case'],
+      labels: ['User research', 'Accessibility', 'Mobile experience', 'Error states', 'Loading states', 'Edge cases']
+    },
+    uidesign: {
+      terms: ['responsive', 'accessibility', 'dark mode', 'loading state', 'error state', 'animation'],
+      labels: ['Responsive design', 'Accessibility', 'Dark mode', 'Loading states', 'Error states', 'Animation/transitions']
+    },
+    designsystem: {
+      terms: ['consistency', 'accessibility', 'documentation', 'adoption', 'governance', 'version'],
+      labels: ['Consistency rules', 'Accessibility standards', 'Documentation', 'Adoption strategy', 'Governance', 'Versioning']
+    },
+    designcritique: {
+      terms: ['accessibility', 'usability', 'consistency', 'business goal', 'user need'],
+      labels: ['Accessibility', 'Usability', 'Consistency', 'Business goals alignment', 'User needs validation']
+    },
+    research: {
+      terms: ['methodology', 'source quality', 'bias', 'limitation', 'validation'],
+      labels: ['Research methodology', 'Source quality', 'Potential biases', 'Limitations', 'Validation approach']
+    },
+    userresearch: {
+      terms: ['sample size', 'recruitment', 'bias', 'analysis method', 'validation', 'ethical'],
+      labels: ['Sample size', 'Recruitment strategy', 'Potential biases', 'Analysis method', 'Validation', 'Ethical considerations']
+    },
+    competitive: {
+      terms: ['differentiator', 'gap', 'opportunity', 'limitation', 'validation'],
+      labels: ['Key differentiators', 'Market gaps', 'Opportunities', 'Analysis limitations', 'Validation sources']
+    },
+    dataanalysis: {
+      terms: ['methodology', 'bias', 'limitation', 'statistical significance', 'validation', 'outlier'],
+      labels: ['Analysis methodology', 'Potential biases', 'Limitations', 'Statistical significance', 'Validation approach', 'Outlier handling']
+    },
+    ideation: {
+      terms: ['constraint', 'criteria', 'validation', 'feasibility', 'tradeoff'],
+      labels: ['Constraints', 'Evaluation criteria', 'Validation approach', 'Feasibility', 'Tradeoffs']
+    },
+    creative: {
+      terms: ['constraint', 'audience', 'success criteria', 'timeline', 'resource', 'revision'],
+      labels: ['Constraints', 'Target audience', 'Success criteria', 'Timeline', 'Resources', 'Revision process']
+    },
+    naming: {
+      terms: ['availability', 'trademark', 'pronunciation', 'international', 'negative connotation'],
+      labels: ['Name availability', 'Trademark check', 'Pronunciation', 'International considerations', 'Negative connotations']
+    },
+    technicalwriting: {
+      terms: ['audience', 'prerequisite', 'example', 'troubleshooting', 'update', 'accessibility'],
+      labels: ['Target audience', 'Prerequisites', 'Examples', 'Troubleshooting', 'Maintenance plan', 'Accessibility']
+    },
+    writing: {
+      terms: ['audience', 'purpose', 'structure', 'revision', 'feedback'],
+      labels: ['Target audience', 'Clear purpose', 'Structure', 'Revision plan', 'Feedback process']
+    },
+    presentation: {
+      terms: ['audience', 'time limit', 'key message', 'visual', 'practice', 'backup'],
+      labels: ['Audience analysis', 'Time constraints', 'Key messages', 'Visual aids', 'Practice plan', 'Backup plan']
+    },
+    problemsolving: {
+      terms: ['root cause', 'constraint', 'alternative', 'tradeoff', 'validation', 'risk'],
+      labels: ['Root cause', 'Constraints', 'Alternatives', 'Tradeoffs', 'Validation', 'Risks']
+    },
+    thinking: {
+      terms: ['assumption', 'constraint', 'alternative', 'validation', 'bias'],
+      labels: ['Assumptions', 'Constraints', 'Alternatives', 'Validation', 'Potential biases']
+    },
+    planning: {
+      terms: ['milestone', 'dependency', 'risk', 'resource', 'contingency', 'metric'],
+      labels: ['Milestones', 'Dependencies', 'Risks', 'Resources', 'Contingency plan', 'Success metrics']
+    },
+    stuck: {
+      terms: ['assumption', 'constraint', 'reframe', 'break down', 'different perspective'],
+      labels: ['Underlying assumptions', 'Hidden constraints', 'Problem reframing', 'Breaking into smaller parts', 'Different perspectives']
+    }
+  };
+
+  function checkMissingConsiderations(responses, categoryId) {
+    const considerations = STANDARD_CONSIDERATIONS[categoryId];
+    if (!considerations) return null;
+    
+    const allText = responses.join(' ').toLowerCase();
+    const missing = [];
+    
+    considerations.terms.forEach((term, index) => {
+      const variations = term.split(' ');
+      const found = variations.some(v => allText.includes(v));
+      
+      if (!found) {
+        missing.push(considerations.labels[index]);
+      }
+    });
+    
+    // Only flag if missing 2+ considerations
+    if (missing.length < 2) return null;
+    
+    return {
+      type: 'missing_considerations',
+      severity: 'medium',
+      count: missing.length,
+      items: missing.slice(0, 5),
+      message: missing.length > 5 
+        ? `${missing.length} standard considerations not mentioned`
+        : `${missing.length} standard considerations not mentioned`
+    };
+  }
+
   function detectAntiPatterns(responses, categoryId) {
     const patterns = ANTI_PATTERNS[categoryId] || [];
     const detected = [];
@@ -642,6 +787,8 @@ window.KumagaizoThinkingAnalysis = (function() {
     // Detect anti-patterns
     const antiPatterns = detectAntiPatterns(responses, category.id);
 
+    const missingConsiderations = checkMissingConsiderations(responses, category.id);
+
     // Detect coverage gaps
     const coverageGaps = detectCoverageGaps(responses, category.id, steps);
 
@@ -668,6 +815,7 @@ window.KumagaizoThinkingAnalysis = (function() {
       overallStrength: getOverallStrength(overallScore),
       responseAnalyses,
       antiPatterns,
+      missingConsiderations,
       coverageGaps,
       strengths,
       needsAttention,
@@ -807,6 +955,25 @@ window.KumagaizoThinkingAnalysis = (function() {
         </div>
       `;
       container.appendChild(patternsEl);
+    }
+
+    if (analysis.missingConsiderations) {
+      const missingEl = document.createElement('div');
+      missingEl.className = 'analysis-section missing-considerations-section';
+      missingEl.innerHTML = `
+        <div class="section-header">
+          <span class="section-icon">📋</span>
+          <span>Domain Checklist</span>
+        </div>
+        <div class="section-content">
+          <div class="missing-intro">You haven't mentioned ${analysis.missingConsiderations.count} standard considerations:</div>
+          <ul class="missing-list">
+            ${analysis.missingConsiderations.items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+          </ul>
+          <div class="missing-prompt">Is this intentional or an oversight?</div>
+        </div>
+      `;
+      container.appendChild(missingEl);
     }
 
     // Show container
